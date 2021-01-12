@@ -11,7 +11,7 @@ class MyPlugin {
             parser.hooks.importSpecifier.tap("MyPlugin",
               (statement, source, exportName, identifierName) => {
                 parser.tagVariable("i18n", MY_TAG, {});
-                // return true
+                return true  // if not comment this line Error happens: Uncaught ReferenceError: i18n is not defined
               }
             );
 

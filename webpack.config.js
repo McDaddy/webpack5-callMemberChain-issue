@@ -1,6 +1,7 @@
 const MyPlugin = require('./plugin/my-plugin');
 const path = require('path');
 const myI18nPlugin = require('./plugin/i18n-plugin.js')
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
     mode:  "development",
@@ -29,7 +30,8 @@ module.exports = {
     //   ]
     // },
     plugins: [
-      new MyPlugin()
+      new MyPlugin(),
+      new HtmlWebpackPlugin()
     ],
   };
   
