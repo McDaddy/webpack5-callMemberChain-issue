@@ -1,7 +1,9 @@
+import { i18n } from './i18n'
+
 console.log("i'm a log");
 
-const myFunc = {
-  s: (a, b) => a + b,
-};
+// const i18n = {
+//     s: (a,b) => a +b 
+// }
 
-myFunc.s(1, 2);
+i18n.s('中文', 'ns');

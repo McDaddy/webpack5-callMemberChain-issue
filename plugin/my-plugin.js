@@ -1,3 +1,5 @@
+
+  const MY_TAG = Symbol("i18n-tag");
 class MyPlugin {
   apply(compiler) {
     compiler.hooks.compilation.tap(
@@ -6,17 +8,17 @@ class MyPlugin {
         normalModuleFactory.hooks.parser
           .for("javascript/auto")
           .tap("MyPlugin", (parser) => {
+            parser.hooks.importSpecifier.tap("MyPlugin",
+              (statement, source, exportName, identifierName) => {
+                parser.tagVariable("i18n", MY_TAG, {});
+                // return true
+              }
+            );
+
             parser.hooks.callMemberChain
-              .for("console")
+              .for(MY_TAG)
               .tap("MyPlugin", (expression, properties) => {
-                // works fine
-                console.log(expression);
-              });
-            // never run into this callback
-            parser.hooks.callMemberChain
-              .for("myFunc")
-              .tap("MyPlugin", (expression, properties) => {
-                console.log(expression);
+                console.log(expression); // works well if line 14 not be commented
               });
           });
       }
